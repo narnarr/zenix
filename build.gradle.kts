@@ -1,9 +1,9 @@
 plugins {
 	kotlin("jvm") version "1.9.25"
 	kotlin("plugin.spring") version "1.9.25"
+	kotlin("plugin.jpa") version "1.9.25"
 	id("org.springframework.boot") version "3.3.3"
 	id("io.spring.dependency-management") version "1.1.6"
-	kotlin("plugin.jpa") version "1.9.25"
 }
 
 group = "dev.nars"
@@ -30,11 +30,14 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
+
 	compileOnly("org.projectlombok:lombok")
 	runtimeOnly("com.mysql:mysql-connector-j")
 	annotationProcessor("org.projectlombok:lombok")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
@@ -46,4 +49,31 @@ kotlin {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+
+allOpen {
+	annotation("javax.persistence.Entity")
+	annotation("javax.persistence.MappedSuperclass")
+	annotation("javax.persistence.Embeddable")
+	/*
+	* 아래는 직접 명시하지 않아도 기본적으로 allOpen 적용
+	* @Component
+	* @Async
+	* @Transactional
+	* @Cacheable
+	* @SpringBootTest
+ 	*/
+}
+
+noArg {
+	// plugin to run the initialization logic from the synthetic constructor
+	// invokeInitializers = true
+
+	/*
+	* 아래는 직접 명시하지 않아도 기본적으로 allOpen 적용
+	* @Entity
+	* @MappedSuperclass
+	* @Embeddable
+	 */
 }
