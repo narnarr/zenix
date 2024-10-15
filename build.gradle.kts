@@ -4,6 +4,7 @@ plugins {
 	kotlin("plugin.jpa") version "1.9.25"
 	id("org.springframework.boot") version "3.3.3"
 	id("io.spring.dependency-management") version "1.1.6"
+//	id("org.flywaydb.flyway") version "10.18.0"
 }
 
 group = "dev.nars"
@@ -31,6 +32,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-redis")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
+	implementation("org.flywaydb:flyway-mysql")
 
 	compileOnly("org.projectlombok:lombok")
 	runtimeOnly("com.mysql:mysql-connector-j")
@@ -53,7 +55,6 @@ kotlin {
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
-
 
 allOpen {
 	annotation("javax.persistence.Entity")
