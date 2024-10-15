@@ -31,6 +31,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-redis")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
+	implementation("org.flywaydb:flyway-mysql")
 
 	compileOnly("org.projectlombok:lombok")
 	runtimeOnly("com.mysql:mysql-connector-j")
@@ -53,7 +54,6 @@ kotlin {
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
-
 
 allOpen {
 	annotation("javax.persistence.Entity")

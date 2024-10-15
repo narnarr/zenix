@@ -1,0 +1,16 @@
+services:
+  zenix-mysql:
+    image: mysql:8.0.23
+    platform: linux/amd64
+    container_name: zenix-mysql
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD="yes"
+  zenix-redis:
+    image: redis:7.4.0
+    container_name: zenix-redis
+    ports:
+      - 6379:6379
