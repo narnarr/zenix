@@ -1,23 +1,23 @@
 package dev.nars.zenix.entity
 
-import dev.nars.zenix.entity.embeddable.BusinessInfo
-import dev.nars.zenix.enumeration.UserStatus
+import dev.nars.zenix.entity.embeddable.BizInfo
 import jakarta.persistence.*
 
 @Entity
+@Table(schema = "zenix_main")
 class User(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long,
+    val id: Long,
 
-    @Column(unique = true, length = 32)
-    var nickname: String,
-
-    @Column(unique = true, length = 32)
-    var username: String,
+    @Column(unique = true, length = 32, updatable = false)
+    val username: String,
 
     @Column(columnDefinition = "TEXT")
     var password: String,
+
+    @Column(unique = true, length = 32)
+    var nickname: String,
 
     @Column(length = 16)
     var phoneNum: String? = null,
@@ -39,9 +39,5 @@ class User(
     var description: String? = null,
 
     @Embedded
-    var businessInfo: BusinessInfo? = null,
-
-    @Enumerated(EnumType.STRING)
-    @Column(length = 20)
-    var status: UserStatus = UserStatus.ACTIVE,
+    var bizInfo: BizInfo? = null,
 ): BaseEntity()

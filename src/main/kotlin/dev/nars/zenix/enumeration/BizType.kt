@@ -1,6 +1,6 @@
 package dev.nars.zenix.enumeration
 
-enum class BusinessType(
+enum class BizType(
     val title: String
 ) {
     ARTS_AND_ENTERTAINMENT("예체능"),
