@@ -1,10 +1,10 @@
-package dev.nars.zenix.config.properties
+package dev.nars.zenix.data.config.properties
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
-import dev.nars.zenix.enumeration.DataSourceType
+import dev.nars.zenix.data.enumeration.DataSourceType
 import org.springframework.boot.context.properties.ConfigurationProperties
 
 @ConfigurationProperties("spring.datasource.main")
@@ -144,9 +144,9 @@ open class MhaDsProp(
         shardIdx: Int?,
     ): Map<String, HikariConfig> {
         return mapOf(
-            dataSourceType.generateSourceName(master.name, shardIdx) to master.toHikariConfig(dataSourceType, null),
+            dataSourceType.generateLookUpKey(master.name, shardIdx, null) to master.toHikariConfig(dataSourceType, null),
             *slaves.mapIndexed { slaveIdx, slave ->
-                dataSourceType.generateSourceName(slave.name, shardIdx) to slave.toHikariConfig(dataSourceType, slaveIdx)
+                dataSourceType.generateLookUpKey(slave.name, shardIdx, slaveIdx) to slave.toHikariConfig(dataSourceType, slaveIdx)
             }.toTypedArray()
         )
     }

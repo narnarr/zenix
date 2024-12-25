@@ -1,4 +1,4 @@
-package dev.nars.zenix.enumeration
+package dev.nars.zenix.data.enumeration
 
 enum class MessageType(
     val title: String,

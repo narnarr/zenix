@@ -1,4 +1,4 @@
-package dev.nars.zenix.enumeration
+package dev.nars.zenix.data.enumeration
 
 enum class DataSourceType {
     MAIN,
@@ -6,13 +6,14 @@ enum class DataSourceType {
     POST,
     ;
 
-    fun generateSourceName(
+    fun generateLookUpKey(
         connectionName: String,
-        shardIdx: Int?
+        shardIdx: Int?,
+        slaveIdx: Int?
     ): String {
         return when (shardIdx == null) {
-            true -> "${name.lowercase()}:$connectionName"
-            else -> "${name.lowercase()}:$connectionName-$shardIdx"
+            true -> "m:${name.lowercase()}:$connectionName"
+            else -> "s$slaveIdx:${name.lowercase()}:$connectionName-$shardIdx"
         }
     }
 

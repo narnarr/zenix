@@ -1,4 +1,4 @@
-package dev.nars.zenix.config
+package dev.nars.zenix.data.config
 
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing

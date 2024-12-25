@@ -1,4 +1,4 @@
-package dev.nars.zenix.enumeration
+package dev.nars.zenix.data.enumeration
 
 enum class ActiveStatus(
     val title: String,

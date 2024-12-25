@@ -1,6 +1,6 @@
-package dev.nars.zenix.entity
+package dev.nars.zenix.data.entity
 
-import dev.nars.zenix.enumeration.ActiveStatus
+import dev.nars.zenix.data.enumeration.ActiveStatus
 import jakarta.persistence.*
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate

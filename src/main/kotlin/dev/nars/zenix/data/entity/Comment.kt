@@ -1,6 +1,6 @@
-package dev.nars.zenix.entity
+package dev.nars.zenix.data.entity
 
-import dev.nars.zenix.enumeration.CommentType
+import dev.nars.zenix.data.enumeration.CommentType
 import jakarta.persistence.*
 
 @Entity

@@ -1,4 +1,4 @@
-package dev.nars.zenix.config.properties
+package dev.nars.zenix.data.config.properties
 
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan
 import org.springframework.context.annotation.Configuration

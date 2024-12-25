@@ -1,4 +1,4 @@
-package dev.nars.zenix.config
+package dev.nars.zenix.data.config
 
 class DatasourceConfig {
 }

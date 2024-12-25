@@ -1,6 +1,6 @@
-package dev.nars.zenix.entity
+package dev.nars.zenix.data.entity
 
-import dev.nars.zenix.entity.embeddable.BizInfo
+import dev.nars.zenix.data.entity.embeddable.BizInfo
 import jakarta.persistence.*
 
 @Entity

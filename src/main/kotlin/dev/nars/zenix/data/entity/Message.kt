@@ -1,6 +1,6 @@
-package dev.nars.zenix.entity
+package dev.nars.zenix.data.entity
 
-import dev.nars.zenix.enumeration.MessageType
+import dev.nars.zenix.data.enumeration.MessageType
 import jakarta.persistence.*
 import org.hibernate.annotations.JdbcTypeCode
 import org.hibernate.type.SqlTypes
