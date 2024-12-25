@@ -6,14 +6,17 @@ enum class DataSourceType {
     POST,
     ;
 
+    fun getShardIdx(lookUpKey: String): Int {
+        return lookUpKey.substringAfterLast(":sh.").toInt()
+    }
+
     fun generateLookUpKey(
         connectionName: String,
         shardIdx: Int?,
-        slaveIdx: Int?
     ): String {
         return when (shardIdx == null) {
-            true -> "m:${name.lowercase()}:$connectionName"
-            else -> "s$slaveIdx:${name.lowercase()}:$connectionName-$shardIdx"
+            true -> "${name.lowercase()}:$connectionName"
+            else -> "${name.lowercase()}:$connectionName:sh.$shardIdx"
         }
     }
 

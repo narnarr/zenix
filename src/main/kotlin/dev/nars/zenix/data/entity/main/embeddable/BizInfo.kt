@@ -1,4 +1,4 @@
-package dev.nars.zenix.data.entity.embeddable
+package dev.nars.zenix.data.entity.main.embeddable
 
 import dev.nars.zenix.data.enumeration.BizType
 import jakarta.persistence.Embeddable

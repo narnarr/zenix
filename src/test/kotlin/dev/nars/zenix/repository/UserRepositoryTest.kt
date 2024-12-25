@@ -1,6 +1,6 @@
 package dev.nars.zenix.repository
 
-import dev.nars.zenix.repository.UserRepository
+import dev.nars.zenix.data.repository.main.UserRepository
 import dev.nars.zenix.testconfig.TestContainerConfig
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test

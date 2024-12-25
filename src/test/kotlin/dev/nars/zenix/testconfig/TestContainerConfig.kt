@@ -1,6 +1,6 @@
 package dev.nars.zenix.testconfig
 
-import dev.nars.zenix.utils.Profiles.TEST
+import dev.nars.zenix.data.constant.Profiles.TEST
 import jakarta.persistence.PostRemove
 import org.springframework.boot.test.util.TestPropertyValues
 import org.springframework.context.ApplicationContextInitializer

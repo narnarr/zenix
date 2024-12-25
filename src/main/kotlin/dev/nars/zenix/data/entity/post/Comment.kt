@@ -1,5 +1,7 @@
-package dev.nars.zenix.data.entity
+package dev.nars.zenix.data.entity.post
 
+import dev.nars.zenix.data.entity.BaseEntity
+import dev.nars.zenix.data.entity.main.User
 import dev.nars.zenix.data.enumeration.CommentType
 import jakarta.persistence.*
 
