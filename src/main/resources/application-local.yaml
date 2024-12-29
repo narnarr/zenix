@@ -1,13 +1,85 @@
 spring:
+  jpa:
+    database: mysql
+    open-in-view: false
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/zenix?serverTimezone=Asia/Seoul
-    username: root
-    password:
-
-  flyway:
-    url: jdbc:mysql://localhost:3306/zenix
-    user: root
-    password:
-
-
+    main:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password:
+      master:
+        name: zx-main-master
+        url: jdbc:mysql://localhost:3306/zenix_main?serverTimezone=Asia/Seoul
+      slaves:
+        - name: zx-main-slave-0
+          url: jdbc:mysql://localhost:3306/zenix_main?serverTimezone=Asia/Seoul
+    conv:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password:
+      shard-json: |
+        {
+          "shards": [
+            {
+              "master": {
+                "name": "zx-conv-master",
+                "url": "jdbc:mysql://localhost:3306/zenix_conv_shard_0?serverTimezone=UTC&characterEncoding=UTF-8"
+              },
+              "slaves": [
+                {
+                  "name": "zx-conv-slave-0",
+                  "url": "jdbc:mysql://localhost:3306/zenix_conv_shard_0?serverTimezone=UTC&characterEncoding=UTF-8"
+                }
+              ]
+            },
+            {
+              "master": {
+                "name": "zx-conv-master",
+                "url": "jdbc:mysql://localhost:3306/zenix_conv_shard_1?serverTimezone=UTC&characterEncoding=UTF-8"
+              },
+              "slaves": [
+                {
+                  "name": "zx-conv-slave-0",
+                  "url": "jdbc:mysql://localhost:3306/zenix_conv_shard_1?serverTimezone=UTC&characterEncoding=UTF-8"
+                }
+              ]
+            }
+          ]
+        }
+    post:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password:
+      shard-json: |
+        {
+          "shards": [
+            {
+              "master": {
+                "name": "zx-post-master",
+                "url": "jdbc:mysql://localhost:3306/zenix_post_shard_0?serverTimezone=UTC&characterEncoding=UTF-8"
+              },
+              "slaves": [
+                {
+                  "name": "zx-post-slave-0",
+                  "url": "jdbc:mysql://localhost:3306/zenix_post_shard_0?serverTimezone=UTC&characterEncoding=UTF-8"
+                }
+              ]
+            },
+            {
+              "master": {
+                "name": "zx-post-master",
+                "url": "jdbc:mysql://localhost:3306/zenix_post_shard_1?serverTimezone=UTC&characterEncoding=UTF-8"
+              },
+              "slaves": [
+                {
+                  "name": "zx-post-slave-1",
+                  "url": "jdbc:mysql://localhost:3306/zenix_post_shard_1?serverTimezone=UTC&characterEncoding=UTF-8"
+                }
+              ]
+            }
+          ]
+        }

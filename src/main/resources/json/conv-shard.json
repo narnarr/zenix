@@ -1,0 +1,32 @@
+{
+  "shards": [
+    {
+      "username": "root",
+      "password": "",
+      "master": {
+        "name": "zx-conv-master",
+        "url": "jdbc:mysql://localhost:3306/zenix_conv_shard_1?serverTimezone=UTC&characterEncoding=UTF-8"
+      },
+      "slaves": [
+        {
+          "name": "zx-conv-slave",
+          "url": "jdbc:mysql://localhost:3306/zenix_conv_shard_1?serverTimezone=UTC&characterEncoding=UTF-8"
+        }
+      ]
+    },
+    {
+      "username": "root",
+      "password": "",
+      "master": {
+        "name": "zx-conv-master",
+        "url": "jdbc:mysql://localhost:3306/zenix_conv_shard_2?serverTimezone=UTC&characterEncoding=UTF-8"
+      },
+      "slaves": [
+        {
+          "name": "zx-conv-slave",
+          "url": "jdbc:mysql://localhost:3306/zenix_conv_shard_2?serverTimezone=UTC&characterEncoding=UTF-8"
+        }
+      ]
+    }
+  ]
+}

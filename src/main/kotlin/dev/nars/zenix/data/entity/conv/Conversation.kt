@@ -1,7 +1,6 @@
 package dev.nars.zenix.data.entity.conv
 
 import dev.nars.zenix.data.entity.BaseEntity
-import dev.nars.zenix.data.entity.main.User
 import dev.nars.zenix.data.enumeration.ConversationType
 import jakarta.persistence.*
 
@@ -15,8 +14,7 @@ class Conversation(
     @Column(length = 20)
     var type: ConversationType,
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    var hostUser: User,
+    var hostUserId: Long,
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     var displayMessage: Message,

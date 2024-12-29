@@ -3,6 +3,7 @@ package dev.nars.zenix.data.config.properties
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.zaxxer.hikari.HikariConfig
+import com.zaxxer.hikari.HikariDataSource
 import dev.nars.zenix.data.enumeration.DataSourceType
 import org.springframework.boot.context.properties.ConfigurationProperties
 
@@ -82,20 +83,23 @@ open class MhaDsProp(
         val name: String,
         val url: String,
     ) {
-        fun toHikariConfig(
+        fun toHikariDataSource(
             dataSourceType: DataSourceType,
+            commonHikariConfig: HikariConfig,
+            dataSourceable: DataSourceable,
             slaveIdx: Int?,
-        ): HikariConfig {
+        ): HikariDataSource {
             return HikariConfig().also {
                 commonHikariConfig.copyStateTo(it)
 
                 it.poolName = dataSourceType.generatePoolName(slaveIdx)
+                it.driverClassName = dataSourceable.driverClassName
                 it.jdbcUrl = url
+                it.username = dataSourceable.username
+                it.password = dataSourceable.password
+            }.let {
+                HikariDataSource(it)
             }
         }
-    }
-
-    companion object {
-        lateinit var commonHikariConfig: HikariConfig
     }
 }

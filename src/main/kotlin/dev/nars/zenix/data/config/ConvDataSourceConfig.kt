@@ -1,5 +1,6 @@
 package dev.nars.zenix.data.config
 
+import com.zaxxer.hikari.HikariConfig
 import dev.nars.zenix.data.config.properties.ConvDsProp
 import dev.nars.zenix.data.constant.DsType
 import dev.nars.zenix.data.constant.EmfType
@@ -30,8 +31,11 @@ import javax.sql.DataSource
 class ConvDataSourceConfig {
 
     @Bean(DsType.CONV)
-    fun dataSource(convDsProp: ConvDsProp): DataSource {
-        return ShardDataSourceRouter(convDsProp, DataSourceType.CONV)
+    fun dataSource(
+        convDsProp: ConvDsProp,
+        commonHikariConfig: HikariConfig,
+    ): DataSource {
+        return ShardDataSourceRouter(DataSourceType.CONV, commonHikariConfig, convDsProp)
             .also { it.afterPropertiesSet() }
             .let { LazyConnectionDataSourceProxy(it) }
     }

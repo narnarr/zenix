@@ -1,5 +1,6 @@
 package dev.nars.zenix.data.config
 
+import com.zaxxer.hikari.HikariConfig
 import dev.nars.zenix.data.config.properties.MainDsProp
 import dev.nars.zenix.data.constant.DsType
 import dev.nars.zenix.data.constant.EmfType
@@ -10,6 +11,7 @@ import dev.nars.zenix.data.router.SingleDataSourceRouter
 import jakarta.persistence.EntityManagerFactory
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties
+import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Primary
@@ -31,10 +33,19 @@ import javax.sql.DataSource
 )
 class MainDataSourceConfig {
 
+    @Bean
+    @ConfigurationProperties(prefix = "spring.datasource.hikari")
+    fun commonHikariConfig(): HikariConfig {
+        return HikariConfig()
+    }
+
     @Primary
     @Bean(DsType.MAIN)
-    fun dataSource(mainDsProp: MainDsProp): DataSource {
-        return SingleDataSourceRouter(mainDsProp, DataSourceType.MAIN)
+    fun dataSource(
+        mainDsProp: MainDsProp,
+        commonHikariConfig: HikariConfig,
+    ): DataSource {
+        return SingleDataSourceRouter(DataSourceType.MAIN, commonHikariConfig, mainDsProp)
             .also { it.afterPropertiesSet() }
             .let { LazyConnectionDataSourceProxy(it) }
     }

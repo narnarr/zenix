@@ -1,7 +1,6 @@
 package dev.nars.zenix.data.entity.post
 
 import dev.nars.zenix.data.entity.BaseEntity
-import dev.nars.zenix.data.entity.main.User
 import dev.nars.zenix.data.enumeration.PostType
 import jakarta.persistence.*
 
@@ -15,8 +14,7 @@ class Post(
     @Column(length = 20)
     var type: PostType,
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    val user: User,
+    val userId: Long,
 
     var title: String,
 

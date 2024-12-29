@@ -14,8 +14,7 @@ class Comment(
     @Column(length = 20)
     val type: CommentType,
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    val user: User,
+    val userId: Long,
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     val post: Post,

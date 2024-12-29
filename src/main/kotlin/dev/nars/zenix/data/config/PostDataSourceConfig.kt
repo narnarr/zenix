@@ -1,5 +1,6 @@
 package dev.nars.zenix.data.config
 
+import com.zaxxer.hikari.HikariConfig
 import dev.nars.zenix.data.config.properties.PostDsProp
 import dev.nars.zenix.data.constant.DsType
 import dev.nars.zenix.data.constant.EmfType
@@ -30,8 +31,11 @@ import javax.sql.DataSource
 class PostDataSourceConfig {
 
     @Bean(DsType.POST)
-    fun dataSource(postDsProp: PostDsProp): DataSource {
-        return ShardDataSourceRouter(postDsProp, DataSourceType.POST)
+    fun dataSource(
+        postDsProp: PostDsProp,
+        commonHikariConfig: HikariConfig,
+    ): DataSource {
+        return ShardDataSourceRouter(DataSourceType.POST, commonHikariConfig, postDsProp)
             .also { it.afterPropertiesSet() }
             .let { LazyConnectionDataSourceProxy(it) }
     }
