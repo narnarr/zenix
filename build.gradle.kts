@@ -31,7 +31,6 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-redis")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("org.flywaydb:flyway-mysql")
 
 	compileOnly("org.projectlombok:lombok")
 	runtimeOnly("com.mysql:mysql-connector-j")
@@ -74,7 +73,7 @@ noArg {
 	// invokeInitializers = true
 
 	/*
-	* 아래는 직접 명시하지 않아도 기본적으로 allOpen 적용
+	* 아래는 직접 명시하지 않아도 기본적으로 noArg 적용
 	* @Entity
 	* @MappedSuperclass
 	* @Embeddable
